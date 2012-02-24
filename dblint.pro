@@ -6,7 +6,7 @@
 %% these are examples of the kinds of suggestions we could implement.
 
 :- discontiguous(suggestion/2).
-:- [structure, util, suggestions].
+:- ['structure.pro', 'util.pro', 'suggestions.pro'].
 
 %% later on, to support various databases:
 %% :- discontiguous(generate_sql/3).

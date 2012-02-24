@@ -1,4 +1,4 @@
-:- [suggestions].
+:- ['suggestions.pro'].
 
 suggestion_sql(remove_redundant_pk(Table, OldId, NewId),
 	      [drop_primary_key(Table, OldId),
