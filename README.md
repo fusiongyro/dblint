@@ -34,7 +34,7 @@ The sample database's structure looks something like this:
 This is an example suggestion session with the sample database loaded:
 
     $ swipl
-    ?- [dblint].
+    ?- ['dblint.pro'].
     true.
     
     ?- suggestion(Action, Reason).

@@ -1,7 +1,7 @@
-:- [suggestions/missing_foreign_key_index].
-:- [suggestions/unnecessary_surrogate_key].
-:- [suggestions/repeating_groups].
-:- [suggestions/missing_foreign_key].
+:- ['suggestions/missing_foreign_key_index.pro'].
+:- ['suggestions/unnecessary_surrogate_key.pro'].
+:- ['suggestions/repeating_groups.pro'].
+:- ['suggestions/missing_foreign_key.pro'].
 
 suggestion(remove_redundant_pk(Table, OldId, NewId), 
           'Surrogate used in place of natural key') :-
