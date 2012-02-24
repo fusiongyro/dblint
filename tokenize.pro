@@ -1,4 +1,4 @@
-tokens([T|Rest]) --> token(T), { write(T), write(', ') }, tokens(Rest).
+tokens([T|Rest]) --> token(T), tokens(Rest).
 tokens([]) --> skip_junk.
 
 token(T) --> skip_junk, prim_token(T).
