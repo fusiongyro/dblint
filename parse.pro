@@ -10,6 +10,9 @@
 %   -- Type :- atom or relation representing type, e.g. 'integer' or 'varchar(23)'
 %   -- Modifiers :- list of modifier atoms, such as not_null, default(X), fk(Dest).
 
+% usage: 
+%   phrase_from_file(tokens(Toks), 'opt-create-table.sql'), phrase(tables(Tables), Toks).
+
 tables([T|Ts]) --> table(T), tables(Ts), !.
 tables([]) --> [].
 
@@ -52,5 +55,5 @@ range(X-Y) --> ['(', X, ',', Y, ')'].
 % prevent spurious parses with types that contain modifiers
 basic_type(X) --> [X].
 basic_type(varchar) --> [character,varying].
-basic_type(timestamp) --> [timestamp,X,time,zone].
+basic_type(timestamp) --> [timestamp,_,time,zone].
 basic_type(double_precision) --> [double,precision].
