@@ -1,23 +1,39 @@
-:- object(schema, implements(schemap)).
+:- object(metaschema,
+    instantiates(metaschema)).
+    
+    :- public(new/2).
+    :- mode(new(+string, -object_identifier), one).
+    :- info(new/2, [
+        comment is 'Creates a new schema from some SQL',
+        argnames is ['SQL', 'Schema']]).
+    
+    new(SQL, Schema) :-
+        self(Self),
+        create_object(Schema, [instantiates(Self)], [], []),
+        Schema::parse(SQL).
+        
+:- end_object.
 
-    :- dynamic([column/3, primary_key/2, unique/2, foreign_key/4, index/2]).
+:- object(schema,
+    instantiates(metaschema),
+    implements(schemap)).
     
-    :- public(from/1).
-    :- mode(from(+list), zero_or_one).
+    %:- dynamic([column/3, primary_key/2, unique/2, foreign_key/4, index/2]).
     
-    from(SQL) :-
+    :- public(parse/1).
+    :- mode(parse(+string), zero_or_one).
+    
+    parse(SQL) :-
         tokenizer::tokenize(SQL, Tokens),
-        parser::objects(Tokens, Objects), !,
-        process_objects(Objects).
-    
-    :- private(process_objects/1).
-    
+        parser::objects(Tokens, Objects),
+        ::process_objects(Objects), !.
+        
     process_objects([Object|Objects]) :- 
-        process_object(Object), process_objects(Objects).
+        process_object(Object), process_objects(Objects), !.
     process_objects([]).
     
     process_object(index(Table, Columns)) :-
-        asserta(index(Table, Columns)).
+        ::asserta(index(Table, Columns)), !.
     process_object(_).
 
 :- end_object.

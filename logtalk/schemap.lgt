@@ -5,7 +5,7 @@
         author is 'Daniel Lyons',
         date is 2012/02/25,
         comment is 'Represents a complete database schema.',
-        copyright is '© 2012 Daniel Lyons <fusion@storytotell.org>',
+        copyright is '© 2012 Daniel Lyons',
         license is 'BSD']).
     
     :- dynamic([column/3, primary_key/2, unique/2, foreign_key/4, index/2]).
