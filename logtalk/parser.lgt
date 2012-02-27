@@ -1,9 +1,25 @@
 :- object(parser).
 
+    :- public(parse/2).
+    :- mode(parse(+list, -list), zero_or_one).
+
+    parse(Codes, Objects) :- 
+        tokenizer::tokenize(Codes, Tokens),
+        objects(Tokens, Objects).
+
     :- public(objects/2).
     :- mode(objects(+list, -list), zero_or_one).
     
     objects(Tokens, Objects) :- phrase(objects(Objects), Tokens).
+    
+    :- public(identifiers/2).
+    :- mode(identifiers(+list, -list), one).
+    :- mode(identifiers(-list, +list), one).
+    :- info(identifiers/2, [
+        comment is 'Translates between SQL lists of identifiers and Prolog lists of identifiers.',
+        argnames is ['SQLIdentifiers', 'Identifiers']]).
+    
+    identifiers(SQLIdentifiers, Identifiers) :- phrase(identifiers(Identifiers), SQLIdentifiers).
     
     % parsing basic SQL create statements
     
