@@ -16,6 +16,11 @@
     %   -- Name :- atom, name of this table
     %   -- Type :- atom or relation representing type, e.g. 'integer' or 'varchar(23)'
     %   -- Modifiers :- list of modifier atoms, such as not_null, default(X), fk(Dest).
+    %
+    % index(Name, Table, Columns)
+    %   -- Name :- atom, name of this index
+    %   -- Table :- atom, name of the table this index is on
+    %   -- Columns :- list of atoms, column names
     
     % usage: 
     %   phrase_from_file(tokens(Toks), 'opt-create-table.sql'), phrase(tables(Tables), Toks).
@@ -26,15 +31,15 @@
     %insert_index(Index, TableList, Result) :-
     
     objects([O|Rest]) --> object(O), [';'], objects(Rest).
-    objects([O]) --> object(O).
+    objects([]) --> [].
     
     object(O) --> table(O) ; index(O).
     
-    index(index(Table, Columns)) --> 
-        [create, index, _, on, Table, '('], identifiers(Columns), [')'].
+    index(index(Name, Table, Columns)) --> 
+        [create, index, Name, on, Table, '('], identifiers(Columns), [')'].
         
-    identifiers([I|Is]) --> [I], identifiers(Is).
-    identifiers([]) --> [].
+    identifiers([I|Is]) --> [I, ','], identifiers(Is).
+    identifiers([I]) --> [I].
     
     tables([T|Ts]) --> table(T), tables(Ts), !.
     tables([]) --> [].
@@ -58,6 +63,8 @@
     modifier(default(X)) --> [default], literal(X).
     modifier(pk) --> [primary, key].
     modifier(fk(Dest)) --> [references,Dest].
+    modifier(fk(Dest, Ids)) --> [references, Dest, '('], identifiers(Ids), [')'].
+    modifier(unique) --> [unique].
     
     literal(X) --> [X], cast, type(_).
     literal(X) --> [X].
