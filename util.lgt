@@ -62,7 +62,7 @@
     irregular_plural(Deer, Deer) :-
         list::member(Deer, [deer, fish, means, offspring, series, sheep, 
                             species]), !.
-    irrelugal_plural(Antenna, Antennae) :-
+    irregular_plural(Antenna, Antennae) :-
         list::member(Antenna, [antenna, formula, nebula, vertebra, vita]), !,
         atom_concat(Antenna, e, Antennae).
     irregular_plural(Mouse, Mice) :-
