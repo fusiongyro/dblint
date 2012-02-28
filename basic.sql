@@ -1,0 +1,17 @@
+CREATE TABLE managers (id SERIAL PRIMARY KEY);
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR UNIQUE,
+  manager_id INTEGER
+);
+
+CREATE TABLE projects (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users,
+  tag1 VARCHAR,
+  tag2 VARCHAR,
+  tag3 VARCHAR,
+  access1 VARCHAR,
+  access2 VARCHAR
+);
