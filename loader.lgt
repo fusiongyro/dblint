@@ -23,4 +23,5 @@
         patterns(missing_foreign_key_index),
         patterns(repeating_groups),
         patterns(unnecessary_surrogate_key),
-        patterns(missing_foreign_key)]))).
+        patterns(missing_foreign_key),
+        patterns(missing_schema)]))).
