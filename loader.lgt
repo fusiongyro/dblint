@@ -20,7 +20,7 @@
         
     % patterns
     logtalk_load([
-        missing_foreign_key_index,
-        repeating_groups,
-        unnecessary_surrogate_key,
-        missing_foreign_key]))).
+        patterns(missing_foreign_key_index),
+        patterns(repeating_groups),
+        patterns(unnecessary_surrogate_key),
+        patterns(missing_foreign_key)]))).
