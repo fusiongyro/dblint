@@ -2,6 +2,8 @@
     instantiates(schema),
     implements(schemap)).
     
+    :- info([comment is 'Defines the schema of a particular database.']).
+    
     :- public(new/2).
     :- mode(new(+string, -object_identifier), one).
     :- info(new/2, [
@@ -26,6 +28,9 @@
         
     :- public(parse/1).
     :- mode(parse(+string), zero_or_one).
+    :- info(parse/1, [
+        comment is 'Parses some SQL and loads it into this schema.',
+        argnames is ['SQL']]).
     
     parse(SQL) :-
         tokenizer::tokenize(SQL, Tokens),

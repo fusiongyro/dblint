@@ -1,7 +1,13 @@
 :- object(parser).
 
+    :- info([comment is 'Parses SQL.']).
+    
+
     :- public(parse/2).
     :- mode(parse(+list, -list), zero_or_one).
+    :- info(parse/2, [
+        comment is 'Returns a list of parsed objects from the SQL provided.',
+        argnames is ['Codes', 'Objects']]).
 
     parse(Codes, Objects) :- 
         tokenizer::tokenize(Codes, Tokens),
@@ -9,6 +15,9 @@
 
     :- public(objects/2).
     :- mode(objects(+list, -list), zero_or_one).
+    :- info(objects/2, [
+        comment is 'Converts between a list of tokens and a list of objects.',
+        argnames is ['Tokens', 'Objects']]).
     
     objects(Tokens, Objects) :- phrase(objects(Objects), Tokens).
     
