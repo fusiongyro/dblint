@@ -25,9 +25,9 @@
 :- object(missing_foreign_key(_Destination, _FK, _Source, _PK), implements(suggestionp)).
 
     destination(Destination) :- parameter(1, Destination).
-    fk(FK) :- parameter(2, FK).
-    source(Source) :- parameter(3, Source).
-    pk(PK) :- parameter(4, PK).
+    fk(FK)                   :- parameter(2, FK).
+    source(Source)           :- parameter(3, Source).
+    pk(PK)                   :- parameter(4, PK).
     
     description(Desc) :-
         destination(Dest), fk(FK), source(Source),
