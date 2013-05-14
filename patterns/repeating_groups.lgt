@@ -21,8 +21,8 @@
 %% Suggestion
 :- object(repeating_groups(_Table, _Prefix, _Columns), implements(suggestionp)).
 
-    table(Table) :- parameter(1, Table).
-    prefix(Prefix) :- parameter(2, Prefix).
+    table(Table)     :- parameter(1, Table). 
+    prefix(Prefix)   :- parameter(2, Prefix).
     columns(Columns) :- parameter(3, Columns).
 
     description(Desc) :-

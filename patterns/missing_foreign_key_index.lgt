@@ -10,7 +10,7 @@
 %% Suggestion
 :- object(missing_foreign_key_index(_Table, _Column), implements(suggestionp)).
 
-    table(Table) :- parameter(1, Table).
+    table(Table)   :- parameter(1, Table).
     column(Column) :- parameter(2, Column).
 
     description(Desc) :-
